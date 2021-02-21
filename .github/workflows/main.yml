@@ -2,13 +2,13 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,11 +24,43 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+      - uses: fregante/setup-git-user@v1
 
       # Runs a single command using the runners shell
       - name: 패키지 설치
         run: yarn
 
-      # Runs a set of commands using the runners shell
+      - name: 릴리즈 내역 커밋 확인
+        run: yarn check:lastCommit
+
+      - name: version 업데이트 및 changelog 생성
+        run: yarn release
+
       - name: 빌드 시작
         run: yarn build
+
+      - name: 변경내역 푸시
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+          tags: true
+
+      - name: 배포완료 사항 노티
+        uses: rtCamp/action-slack-notify@v2.1.2
+        if: ${{ success() }}
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "배포 성공! 배포내역: https://github.com/feel5ny/test-spa-version/blob/master/CHANGELOG.md"
+          SLACK_ICON: https://avatars.githubusercontent.com/u/30822283?s=60&v=4
+          SLACK_USERNAME: joyBot
+
+      - name: Job 상태 노티
+        uses: rtCamp/action-slack-notify@v2.1.2
+        if: ${{ failure() }}
+        env:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+          SLACK_MESSAGE: "배포 실패!"
+          SLACK_COLOR: red
+          SLACK_ICON: https://avatars.githubusercontent.com/u/30822283?s=60&v=4
+          SLACK_USERNAME: joyBot

@@ -2,14 +2,18 @@ const prompts = require("prompts");
 const gittags = require("git-tags");
 const shell = require("shelljs");
 const semverDiff = require("semver-diff");
+const remoteGitTags = require("remote-git-tags");
 
-let tagList = [];
+let localTag = [];
 gittags.get(function (err, tags) {
   if (err) throw err;
-  tagList = tags.map((v) => ({ title: v, value: v }));
-  // ['1.0.1', '1.0.0', '0.1.0-beta']
-  //   prompts.override(require("yargs").argv);
+  localTag = tags.map((v) => ({ title: v, value: v }));
+
   (async () => {
+    const remoteTag = [
+      ...(await remoteGitTags("https://github.com/feel5ny/test-spa-version")),
+    ].map(([v]) => ({ title: v, value: v }));
+    console.log(remoteTag);
     const response = await prompts([
       {
         type: "toggle",
@@ -23,34 +27,30 @@ gittags.get(function (err, tags) {
         type: "select",
         name: "value",
         message: "태그버전을 선택해주세요",
-        choices: tagList,
+        choices: remoteTag,
         initial: 1,
       },
     ]);
-    const remove = tagList.reduce(
+
+    const commit = shell.exec(`git rev-parse --verify ${response.value}~1`);
+    if (commit.code !== 0) {
+      shell.echo("Error: Git commit failed");
+      shell.exit(1);
+    }
+    const reset = shell.exec(`git reset --hard ${commit.stdout}`);
+    if (reset.code !== 0) {
+      shell.echo("Error: Git commit failed");
+      shell.exit(1);
+    }
+    const remove = remoteTag.reduce(
       (acc, { value }) => (
         !semverDiff(value.slice(1), response.value) && acc.push(value), acc
       ),
       []
     );
-    console.log(remove);
-    remove.forEach((tag) => shell.exec(`git tag -d ${tag}`));
-    console.log(reset.stdout);
-    // if (reset.code !== 0) {
-    //   shell.echo("Error: Git commit failed");
-    //   shell.exit(1);
-    // }
-    // Run external tool synchronously
-    // const commit = shell.exec(`git rev-parse --verify ${response.value}~1`);
-    // if (commit.code !== 0) {
-    //   shell.echo("Error: Git commit failed");
-    //   shell.exit(1);
-    // }
-    // const reset = shell.exec(`git reset --hard ${commit.stdout}`);
-    // console.log(reset.stdout);
-    // if (reset.code !== 0) {
-    //   shell.echo("Error: Git commit failed");
-    //   shell.exit(1);
-    // }
+    remove.forEach((tag) => {
+      shell.exec(`git tag -d ${tag}`);
+      shell.exec(`git push origin -d ${tag}`);
+    });
   })();
 });
