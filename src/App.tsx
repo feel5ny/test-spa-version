@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          런 리액트
+          런 리액트~
         </a>
       </header>
     </div>
