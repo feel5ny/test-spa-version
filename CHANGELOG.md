@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.1.7](https://github.com/feel5ny/test-spa-version/compare/v0.1.6...v0.1.7) (2021-02-21)
+
+
+* 이번 배포는 이러합니다2 ([69eb61b](https://github.com/feel5ny/test-spa-version/commit/69eb61b9302f137cecd62728a80699408da8cc7c)), closes [#1](https://github.com/feel5ny/test-spa-version/issues/1)
+
 ### [0.1.6](https://github.com/feel5ny/test-spa-version/compare/v0.1.5...v0.1.6) (2021-02-21)
 
 
