@@ -10,3 +10,4 @@ All notable changes to this project will be documented in this file. See [standa
 * **setting:** versionrc 파일 셋팅 ([c459063](https://github.com/feel5ny/test-spa-version/commit/c4590638c84e1bc3283786ffee0a21ca70e2cb4d))
 
 ### 0.1.1 (2021-02-21)
+이것은 유지되는 것인가?
