@@ -23,6 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "check:lastCommit": "bash scripts/lastCommit.sh",
     "release": "standard-version",
     "build": "react-scripts build",
     "test": "react-scripts test",
