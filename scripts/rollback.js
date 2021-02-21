@@ -35,7 +35,7 @@ gittags.get(function (err, tags) {
     );
     console.log(remove);
     remove.forEach((tag) => shell.exec(`git tag -d ${tag}`));
-    // console.log(reset.stdout);
+    console.log(reset.stdout);
     // if (reset.code !== 0) {
     //   shell.echo("Error: Git commit failed");
     //   shell.exit(1);
