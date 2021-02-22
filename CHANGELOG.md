@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.10 (2021-02-22)
+
+
+* merge ([a5233c6](https://github.com/feel5ny/test-spa-version/commit/a5233c6a127574293824f100440a93a138750e4d))
+
 ### 0.1.9 (2021-02-22)
 
 
