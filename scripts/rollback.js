@@ -37,9 +37,9 @@ gittags.get(function (err, tags) {
       shell.echo("Error: Git commit failed");
       shell.exit(1);
     }
-    const reset = shell.exec(`git reset --hard ${commit.stdout}`);
+    const reset = shell.exec(`git reset --soft ${commit.stdout}`);
     if (reset.code !== 0) {
-      shell.echo("Error: Git commit failed");
+      shell.echo("Error: Git reset failed");
       shell.exit(1);
     }
     const remove = remoteTag.reduce(
@@ -52,5 +52,10 @@ gittags.get(function (err, tags) {
       shell.exec(`git tag -d ${tag}`);
       shell.exec(`git push origin -d ${tag}`);
     });
+    const push = shell.exec(`git push -f origin master`);
+    if (push.code !== 0) {
+      shell.echo("Error: Git push failed");
+      shell.exit(1);
+    }
   })();
 });
