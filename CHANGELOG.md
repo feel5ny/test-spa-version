@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.9 (2021-02-22)
+
+
+* 롤백 파일 생성 (여기는 롤백하지마시오) ([5dd19d5](https://github.com/feel5ny/test-spa-version/commit/5dd19d561db86b24cf6526892d9ef0ed89c1b1c0))
+
 ### 0.1.8 (2021-02-22)
 
 
