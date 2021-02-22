@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.8 (2021-02-22)
+
+
+* 다아시이 ([3e24293](https://github.com/feel5ny/test-spa-version/commit/3e242935974913fe086748f01aa2f0a34aa039e2))
+
 ### [0.1.7](https://github.com/feel5ny/test-spa-version/compare/v0.1.6...v0.1.7) (2021-02-21)
 
 
