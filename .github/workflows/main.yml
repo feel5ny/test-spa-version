@@ -40,7 +40,7 @@ jobs:
         run: yarn build
       
       - name: 배포
-        run: echo "배포"
+        run: echo "배포2"
 
       - name: 변경내역 푸시
         uses: ad-m/github-push-action@master
