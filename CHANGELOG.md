@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.11 (2021-02-23)
+
+
+* workflow 수정 ([2be6389](https://github.com/feel5ny/test-spa-version/commit/2be6389b4acc7370f7e11f6b765c47f21101ed44))
+
 ### 0.1.10 (2021-02-22)
 
 
