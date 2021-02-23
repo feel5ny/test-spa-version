@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### 0.1.12 (2021-02-23)
+
+
+* 업데이트 readme.md ([73f7462](https://github.com/feel5ny/test-spa-version/commit/73f74623fa83922a9543825083158c63c6b99152))
+
 ### 0.1.11 (2021-02-23)
 
 
