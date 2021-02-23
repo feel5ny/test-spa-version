@@ -6,4 +6,4 @@
   -  [마지막 커밋 확인용 bash](./scripts/lastCommit.sh)
   -  [commit린트 설정파일](./.commitlintrc.js)
   -  [changelog 설정파일](./.versionrc)
-- 배포 관련 : [gitbub action용 워크플로우](./github/workflows/main.yml)
+- 배포 관련 : [gitbub action용 워크플로우](./.github/workflows/main.yml)
